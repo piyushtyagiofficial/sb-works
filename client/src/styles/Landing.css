@@ -1,0 +1,34 @@
+.landing {
+    background-image: url('../images/landing_bg.jpg');
+    background-position: center; 
+    background-size: cover;
+    height: 100vh;
+}
+.Landing {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .auth-buttons {
+    margin-top: 20px;
+  }
+  
+  .login-btn, .logout-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .login-btn:hover, .logout-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .content {
+    margin-top: 40px;
+  }
+  
