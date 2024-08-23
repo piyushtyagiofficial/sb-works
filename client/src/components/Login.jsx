@@ -1,22 +1,36 @@
 import React, { useState } from 'react';
 import "../styles/Login.css";
 import Navbar from "./Navbar";
+import axios from "axios";
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
 
     // Perform simple form validation
-    if (username.trim() === '' || password.trim() === '') {
+    if (email.trim() === '' || password.trim() === '') {
       alert('Please fill in all fields');
       return;
     }
 
-    // If validation passes, the form will be submitted
-    // Here you can add logic to handle form submission (e.g., sending data to the backend)
+    const loginData = {
+      email: email,
+      password: password,
+    };
+
+    axios.post('http://localhost:5000/login', loginData)
+      .then((response) => {
+        console.log('Login successful:', response.data);
+        alert('Login successful!');
+      })
+      .catch((error) => {
+        console.error('There was an error logging in the user:', error);
+        alert('There was an error logging in the user. Please try again.');
+      });
+    console.log('Login successful:', loginData);
   }
 
   return (
@@ -28,12 +42,12 @@ function Login() {
       <form onSubmit={handleSubmit} action="/login" method="POST" className="login-form">
         <h2>Login</h2>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email</label>
           <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            type="email"
+            id="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
             required
           />
         </div>
